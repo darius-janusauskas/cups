@@ -5,7 +5,7 @@
 
 // st.h is needed for ST_CONTINUE constant
 #include <ruby.h>
-#include <st.h>
+#include <ruby/st.h>
 
 #ifndef MAXOPTS
   #define MAXOPTS 100
