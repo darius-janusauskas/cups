@@ -8,7 +8,7 @@ end
 def include_ipp_private_structures?
   puts 'cups version:'
   puts `cups-config --version`
-  `cups-config --version`.scan(/1.(6|7)/).size > 0
+  `cups-config --version`.gsub(/[.\n]/, "").to_i > 160
 end
 
 cups_cflags = `cups-config --cflags`.chomp || ""
