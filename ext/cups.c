@@ -147,7 +147,7 @@ static VALUE cups_print(VALUE self)
     cupsAddOption(iter_str, value_str, num_options++, &options);
   }
 
-  if(NIL_P(url)) {
+  if(url == NULL) {
     url = cupsServer();
   }
 
@@ -238,7 +238,7 @@ static VALUE cups_job_failed(VALUE self)
 {
   VALUE job_id = rb_iv_get(self, "@job_id");
 
- if (NIL_P(job_id) || !NUM2INT(job_id) == 0) {
+ if (NIL_P(job_id) || NUM2INT(job_id) != 0) {
    return Qfalse;
  } else {
    return Qtrue;
@@ -255,7 +255,7 @@ static VALUE cups_get_error_reason(VALUE self)
 {
   VALUE job_id = rb_iv_get(self, "@job_id");
 
-  if (NIL_P(job_id) || !NUM2INT(job_id) == 0) {
+  if (NIL_P(job_id) || NUM2INT(job_id) != 0) {
     return Qnil;
   } else {
     VALUE error_exp = rb_str_new2(cupsLastErrorString());
@@ -273,7 +273,7 @@ static VALUE cups_get_error_code(VALUE self)
 {
   VALUE job_id = rb_iv_get(self, "@job_id");
 
-  if (NIL_P(job_id) || !NUM2INT(job_id) == 0) {
+  if (NIL_P(job_id) || NUM2INT(job_id) != 0) {
     return Qnil;
   } else {
     VALUE ipp_error_code = INT2NUM(cupsLastError());
